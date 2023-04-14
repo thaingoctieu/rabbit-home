@@ -15,7 +15,7 @@ db.connect()
 // use middle ware
 app.use("/api/auth", authRoutes);
 
-app.listen(port)
+app.listen(process.env.PORT)
 
 
 // app.get('/', (req, res) => {

@@ -1,35 +1,4 @@
 const mongoose = require('mongoose')
-// import { apartmentSchema } from './apartment'
-
-// room schema
-const roomSchema = new mongoose.Schema({
-    fan: String,
-    light: String,
-    servo: String,
-    temp: String,
-    humi: String,
-    fire_detector: String,
-})
-
-// apartment schema
-const apartmentSchema = new mongoose.Schema({
-    bed: {
-        type: roomSchema,
-        require: true,
-    },
-    living: {
-        type: roomSchema,
-        require: true,
-    },
-    kitchen: {
-        type: roomSchema,
-        require: true,
-    },
-    dining: {
-        type: roomSchema,
-        require: true,
-    },
-})
 
 // create user schema
 const userSchema = new mongoose.Schema({
