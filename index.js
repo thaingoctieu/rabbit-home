@@ -1,11 +1,31 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
+
 const port = 3000;
+require("dotenv").config();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+const db = require('./services/connectDB')
+const authRoutes = require("./routes/auth");
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+
+// connect database
+db.connect()
+
+// use middle ware
+app.use("/api/auth", authRoutes);
+
+app.listen(port)
+
+
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
+// });
+
+// app.listen(port, () => {
+//   console.log(`Example app listening at http://localhost:${port}`);
+// });
+
+
+
+
