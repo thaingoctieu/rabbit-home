@@ -1,4 +1,5 @@
 # rabbit-home
 
-Back-end side DADN HK 222
-FE: https://github.com/duyphatbk/DADN_HK222
+Back-end side DADN HK-222
+
+Front-end: https://github.com/duyphatbk/DADN_HK222
