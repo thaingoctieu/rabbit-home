@@ -13,7 +13,7 @@ module.exports.login = async (req, res, next) => {
                 msg: 'Incorrect password!!',
                 status: false
             })
-        res.sendStatus(200)
+        res.status(200).json({ user })
     } catch (err) {
         next(err)
     }
@@ -58,12 +58,10 @@ module.exports.modifyInfo = async (req, res, next) => {
 
         // { filter }, { update }, { set new to 'true' to update }
         const user = await User.findOneAndUpdate(
-            { _id }, 
+            { _id },
             { fname, lname, phone_number, payment },
             { new: true }
         )
-
-        console.log(user)
 
         if (!user) res.json({
             msg: 'Invalid id!!',

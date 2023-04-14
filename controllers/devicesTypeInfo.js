@@ -1,0 +1,1 @@
+// get information of a specific device type

@@ -8,12 +8,14 @@ require("dotenv").config()
 
 const db = require('./services/connectDB')
 const authRoutes = require("./routes/auth")
+const deviceRoutes = require('./routes/device')
 
 // connect database
 db.connect()
 
 // use middle ware
-app.use("/api/auth", authRoutes)
+app.use("/auth", authRoutes)
+app.use("/device", deviceRoutes)
 
 //
 app.listen(process.env.PORT)
