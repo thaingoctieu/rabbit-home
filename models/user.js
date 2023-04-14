@@ -16,8 +16,8 @@ const userSchema = new mongoose.Schema({
     payment: String,
     concurrent_device: Number,
     phone_number: String,
-    manager_id: mongoose.Schema.Types.String,
+    manager_id: String,
     apartment: Object
 })
 
-module.exports = mongoose.model("user", userSchema)
+module.exports = mongoose.model("user", userSchema, "user")

@@ -1,11 +1,14 @@
 const {
     login,
+    userInfo,
+    modifyInfo,
 } = require("../controllers/user")
 
 const router = require("express").Router()
 
 router.post('/login', login)
-// router.get("/logout/:id", logout)
+router.get('/userInfo/:id', userInfo)
+router.patch('/modifyInfo/:id', modifyInfo)
 
 
 // error handler
