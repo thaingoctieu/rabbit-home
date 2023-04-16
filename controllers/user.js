@@ -13,7 +13,7 @@ module.exports.login = async (req, res, next) => {
                 msg: 'Incorrect password!!',
                 status: false
             })
-        res.status(200).json({ user })
+        res.status(200).json({ status: true, user })
     } catch (err) {
         next(err)
     }

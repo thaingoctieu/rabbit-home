@@ -8,6 +8,7 @@ require("dotenv").config()
 
 // connect database
 db.connect()
+
 // middleware usage
 // parses incoming JSON requests and puts the parsed data in req.body
 app.use(express.json())
@@ -16,7 +17,9 @@ app.use("/auth", authRoutes)
 app.use("/device", deviceRoutes)
 
 //
-app.listen(process.env.PORT)
+app.listen(process.env.PORT, () => {
+    console.log(`Server run at port ${process.env.PORT}`)
+})
 
 
 
