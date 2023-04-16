@@ -70,7 +70,6 @@ const servoHistoryModel = mongoose.model('servo_volume', servoHistory, 'servo_vo
 const tempHumiHistoryModel = mongoose.model('temp_humi_volume', tempHumiHistory, 'temp_humi_volume')
 
 const deviceHistory = (type) => {
-    // collectionName = deviceHistoryModel.collection.collectionName;
     switch (type) {
         case 'fan':
             return fanHistoryModel

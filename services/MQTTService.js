@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { useEffect, useContext, useState, useReducer } from 'react';
 import init from 'react_native_mqtt';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
