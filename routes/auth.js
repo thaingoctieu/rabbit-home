@@ -4,11 +4,13 @@ const {
     modifyInfo,
 } = require("../controllers/user")
 
+const { authentication } = require('../middleware/authen')
+
 const router = require("express").Router()
 
 router.post('/login', login)
-router.get('/userInfo/:id', userInfo)
-router.patch('/modifyInfo/:id', modifyInfo)
+router.get('/userInfo', authentication, userInfo)
+router.patch('/modifyInfo', authentication, modifyInfo)
 
 
 // error handler

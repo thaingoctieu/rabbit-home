@@ -22,7 +22,7 @@ const ledHistory = new mongoose.Schema({
     value: Number,
     time: Date
 }, {
-    versionKey: false // You should be aware of the outcome after set to false
+    versionKey: false
 })
 
 const gasHistory = new mongoose.Schema({
@@ -34,7 +34,7 @@ const gasHistory = new mongoose.Schema({
     value: Number,
     time: Date
 }, {
-    versionKey: false // You should be aware of the outcome after set to false
+    versionKey: false
 })
 
 const pirHistory = new mongoose.Schema({
@@ -46,7 +46,7 @@ const pirHistory = new mongoose.Schema({
     value: Number,
     time: Date
 }, {
-    versionKey: false // You should be aware of the outcome after set to false
+    versionKey: false
 })
 
 const servoHistory = new mongoose.Schema({
@@ -58,7 +58,7 @@ const servoHistory = new mongoose.Schema({
     value: Number,
     time: Date
 }, {
-    versionKey: false // You should be aware of the outcome after set to false
+    versionKey: false
 })
 
 const tempHumiHistory = new mongoose.Schema({

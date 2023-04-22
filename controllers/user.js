@@ -1,4 +1,5 @@
 const User = require("../models/user")
+const jwt = require('jsonwebtoken')
 
 // middleware functions
 
@@ -13,7 +14,13 @@ module.exports.login = async (req, res, next) => {
                 msg: 'Incorrect password!!',
                 status: false
             })
-        res.status(200).json({ status: true, user })
+
+        // jwt
+        const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+            expiresIn: '30d'
+        });
+
+        res.status(200).json({ status: true, user, token })
     } catch (err) {
         next(err)
     }
@@ -21,12 +28,15 @@ module.exports.login = async (req, res, next) => {
 
 module.exports.userInfo = async (req, res, next) => {
     try {
-        const _id = req.params.id
-        if (!_id) res.json({ msg: "User id is required " })
-        const user = await User.findOne({ _id })
+        const { email } = req.user
+        if (!email) res.json({
+            msg: "Can not get user email!",
+            status: false
+        })
+        const user = await User.findOne({ email })
         if (!user)
             res.json({
-                msg: 'Invalid id!!',
+                msg: 'Invalid email!!',
                 status: false
             })
 
@@ -48,27 +58,29 @@ module.exports.userInfo = async (req, res, next) => {
 
 module.exports.modifyInfo = async (req, res, next) => {
     try {
-        const _id = req.params.id
+        const { email } = req.user
+        if (!email) res.json({ msg: "Can not get user email!" })
+
         const { fname, lname, phone_number, payment } = req.body
 
-        if (!_id) res.json({
-            msg: 'User id is required',
+        if (!email) res.json({
+            msg: "Can not get user email!",
             status: false
         })
 
         // { filter }, { update }, { set new to 'true' to update }
         const user = await User.findOneAndUpdate(
-            { _id },
+            { email },
             { fname, lname, phone_number, payment },
             { new: true }
         )
 
         if (!user) res.json({
-            msg: 'Invalid id!!',
+            msg: 'Invalid email!',
             status: false
         })
 
-        res.status(200).json({ user })
+        res.status(200).json({ user, status: true })
 
     } catch (err) {
         next(err)

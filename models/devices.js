@@ -1,13 +1,8 @@
 const mongoose = require('mongoose')
-const ObjectId = Schema.ObjectId;
+const ObjectId =  mongoose.Schema.ObjectId;
 
-
-const abstractDevice = new mongoose.Schema({
-    abstract_name: String,
-    name: String,
-    origin: String,
-    price: Number,
-    description: String,
-    amount_in_stock: Number,
-    manager_id: ObjectId
+const Device = new mongoose.Schema({
+    abstract_id: ObjectId,
 })
+
+module.exports = mongoose.model('devices', Device, 'devices')
