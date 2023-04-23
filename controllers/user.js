@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 // middleware functions
 
 // verify user
+// login function return all user info and create 1 token for the current time
 module.exports.login = async (req, res, next) => {
     try {
         const { email, password } = req.body
@@ -28,6 +29,7 @@ module.exports.login = async (req, res, next) => {
 
 module.exports.userInfo = async (req, res, next) => {
     try {
+        // get user email from req.user (see middleware/authen.js)
         const { email } = req.user
         if (!email) res.json({
             msg: "Can not get user email!",
@@ -58,6 +60,7 @@ module.exports.userInfo = async (req, res, next) => {
 
 module.exports.modifyInfo = async (req, res, next) => {
     try {
+        // get user email from req.user (see middleware/authen.js)
         const { email } = req.user
         if (!email) res.json({ msg: "Can not get user email!" })
 
