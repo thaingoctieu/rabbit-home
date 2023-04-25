@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 // middleware functions
 
 // verify user
-// login function return all user info and create 1 token for the current time
+// login function returns user info object and create 1 token for the current time
 module.exports.login = async (req, res, next) => {
     try {
         const { email, password } = req.body
@@ -42,14 +42,13 @@ module.exports.userInfo = async (req, res, next) => {
                 status: false
             })
 
-        const { fname, lname, phone_number, payment, concurrent_device, type } = user
+        const { fname, lname, phone_number, payment, type } = user
         res.status(200).json({
             data: {
                 fname,
                 lname,
                 phone_number,
                 payment,
-                concurrent_device,
                 type
             }
         })
@@ -64,7 +63,7 @@ module.exports.modifyInfo = async (req, res, next) => {
         const { email } = req.user
         if (!email) res.json({ msg: "Can not get user email!" })
 
-        const { fname, lname, phone_number, payment } = req.body
+        const { fname, lname, phone_number, payment, password } = req.body
 
         if (!email) res.json({
             msg: "Can not get user email!",
@@ -74,7 +73,7 @@ module.exports.modifyInfo = async (req, res, next) => {
         // { filter }, { update }, { set new to 'true' to update }
         const user = await User.findOneAndUpdate(
             { email },
-            { fname, lname, phone_number, payment },
+            { fname, lname, phone_number, payment, password },
             { new: true }
         )
 
